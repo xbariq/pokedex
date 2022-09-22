@@ -35,6 +35,9 @@ function App() {
       console.log(data);
       setPokemonData(data);
       setStatus(AppStatus.SUCCESS);
+
+      
+
     } else if (response.status === 404) {
       console.log("Pokemon not found");
       setStatus(AppStatus.NOT_FOUND);
