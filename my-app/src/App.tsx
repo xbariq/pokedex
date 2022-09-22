@@ -1,5 +1,6 @@
 import React from 'react';
 import logo from './logo.svg';
+import { useState, useEffect } from "react";
 import './index.css';
 import PokemonData from './models/pokemonData';
 import DisplayPokemon from './components/DisplayPokemon';
@@ -36,8 +37,9 @@ function App() {
       setPokemonData(data);
       setStatus(AppStatus.SUCCESS);
 
+      // Save Pokemon data to local storage.
+      localStorage.setItem(searchText, JSON.stringify(data));
       
-
     } else if (response.status === 404) {
       console.log("Pokemon not found");
       setStatus(AppStatus.NOT_FOUND);
