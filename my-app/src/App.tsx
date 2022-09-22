@@ -13,14 +13,37 @@ enum AppStatus {
   NOT_FOUND,
   ERROR,
 }
-function App() {
+
+  const GET_POKEMON_ENDPOINT= "https://pokeapi.co/api/v2/pokemon";
+  const LISR_POKEMONT_ENDPOINT=
+    "https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0";
+  
+  const LIST_POKEMON_CACHE_KEY = "ALL_POKEMON";
+
+  function App() {
 
   const [searchText, setSearchText]=  React.useState("");
   const [status, setStatus] = React.useState(AppStatus.IDLE);
   const [pokemontData, setPokemonData]= React.useState<PokemonData>();
 
+  const getAllPokemon = async () => {
+    const cachedPokemon = localStorage.getItem(LIST_POKEMON_CACHE_KEY);
+    if (!cachedPokemon) {
+      const response = await fetch(LISR_POKEMONT_ENDPOINT);
+      const data = await response.json();
+      localStorage.setItem(LIST_POKEMON_CACHE_KEY,  JSON.stringify(data.results));
+      console.log(`Cached ${data.results.length} pokemon`);
+    } else {
+      console.log(`Using cached pokemon`);
+    }
 
-  const GET_POKEMON_ENDPOINT= "https://pokeapi.co/api/v2/pokemon";
+  };
+  useEffect(() => {
+    getAllPokemon();
+  }, []);
+
+
+  
 
   const getPokemonDataFromApi=async (pokemonName:string) => {
     //call pokemon endpoint
