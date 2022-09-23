@@ -7,7 +7,7 @@ const DisplayPokemon: React.FC<PokemonData> = (props) => {
         <div>
             <h1>{props.name}</h1>
             <img src={props.sprites.front_default} alt={props.name} />
-            <p>Weight: {props.weight}</p>
+    
         </div>
     )
 }
