@@ -116,48 +116,62 @@ enum AppStatus {
 
     }
 
-  }
+  };
+
+  const suggestedPokemon= 
+    searchText.length > 1 ? getSuggestedPokemon(searchText).slice(0,5) : [];
+
+
+  const suggestedPokemonLinks= suggestedPokemon.map((pokemonName: string) => {
+    return (
+      <div className="first:border-0 border-t hover:underline hover:text-blue-500 cursor-pointer hover:bg-blue-50"> 
+      
+      <a 
+        className="text-slate-700 "
+        onClick={(e) => {
+          e.preventDefault();
+          searchForPokemon(pokemonName);
+          setSearchText(pokemonName);
+        }}
+      >
+        <div key={pokemonName} className=" border-slate-200 p-1"> 
+        <span className='font-bold'>{searchText}</span> 
+         {pokemonName.slice(searchText.length)}
+       
+      </div>
+      </a>
+      </div>
+    );
+  });
+
 
   const searchBox= (
-      <div>
+      <div className="mx-auto">
         <form> 
       <input type="text" 
+      className="border-2 border-slate-500 p-2 rounded-lg w-64 mr-4"
       placeholder="Search for a Pokemon" 
       value={searchText}
       onChange={(e) => {setSearchText(e.currentTarget.value);
             }}
       />
-      <button onClick={onClickSearch}>Search</button>
+      
+      <button onClick={onClickSearch} className="bg-blue-500 text-white p-2 w-24 rounded-lg hover:underline hover:bg-blue-600 ">Search</button>
       </form>
+      <div className="border rounded-sm w-64 mt-1">{suggestedPokemonLinks} </div>
     </div>
     );
 
     let displayElement = null;
 
-    const suggestedPokemon= 
-      searchText.length > 1 ? getSuggestedPokemon(searchText).slice(0,5) : [];
-    
-    const suggestedPokemonLinks= suggestedPokemon.map((pokemonName: string) => {
-      return (
-        <div key={pokemonName}> 
-        <a onClick={(e) => {
-          e.preventDefault();
-          searchForPokemon(pokemonName);
-          setSearchText(pokemonName);
-        }}>
-          {pokemonName}
-        </a>
-        </div>
-      );
-    });
-
-    const suggestedPokemonElement= 
-      suggestedPokemon.length > 0 ? (
-        <div>
-          <h6 className='text-lg font-bold'>Did you mean: </h6>
-          {suggestedPokemonLinks}
-        </div>
-      ) : null;
+   
+    // const suggestedPokemonElement= 
+    //   suggestedPokemon.length > 0 ? (
+    //     <div>
+    //       <h6 className='text-lg font-bold'>Did you mean: </h6>
+    //       {suggestedPokemonLinks}
+    //     </div>
+    //   ) : null;
 
 
     
@@ -166,9 +180,10 @@ enum AppStatus {
     if (status === AppStatus.SUCCESS && pokemontData){
       displayElement = <DisplayPokemon {...pokemontData} />;
     } else if (status ===AppStatus.NOT_FOUND){
-      displayElement= (<div>
+      displayElement= (
+      <div>
         <h3 className="text-xl underline-offset-2 text-yellow-500 font-bold">Pokemon not found</h3>
-        {suggestedPokemonElement} 
+        {/* {suggestedPokemonElement} */}
         </div>
       );
     } else if (status === AppStatus.LOADING){
@@ -179,15 +194,19 @@ enum AppStatus {
 
 
     return (
+      <div className="flex h-screen">  
       
+      <div className="border border-red-300 m-auto max-w-lg w-full mt-4 sm:mt-12">
+        
+        <h1 className="text-2xl text-slate-800 font-bold text-center"> POKEDEX </h1> 
+     <p className="text-slate-400 mb-8 text-center"> Search for a Pokemon below!</p>
+     
+      <div className="flex"> {searchBox} </div>
       
-      <div> POKEDEX
-      {searchBox}
-      
-      {displayElement}
+     <div className=" object-[center_bottom]"> {displayElement} </div> 
         
       </div>
-
+      </div>
 
     );
   }
