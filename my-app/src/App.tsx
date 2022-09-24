@@ -7,6 +7,9 @@ import DisplayPokemon from './components/DisplayPokemon';
 import { Trie } from "prefix-trie-ts";
 
 
+        
+        
+
 // Create an enum for app status. 
 enum AppStatus {
   IDLE,
@@ -176,12 +179,16 @@ enum AppStatus {
 
 
     return (
+      
+      
       <div> POKEDEX
       {searchBox}
       
       {displayElement}
         
       </div>
+
+
     );
   }
 
