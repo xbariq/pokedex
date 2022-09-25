@@ -186,7 +186,7 @@ enum AppStatus {
     } else if (status ===AppStatus.NOT_FOUND){
       displayElement= (
       <div>
-        <h3 className="text-xl underline-offset-2 text-red-600 font-bold  bg-white animate__animated animate__bounceInUp rounded-lg font-padding py-1 px-1 mx-20 my-1 w-60 ">Pokemon not found !! :(</h3>
+        <h3 className="text-xl underline-offset-2 text-red-600 font-bold  bg-white animate__animated animate__bounceInUp rounded-lg font-padding py-1 px-1 mx-20 my-1 w-60 ">Pokemon not found !</h3>
         {suggestedPokemonElement}
         </div>
       );
