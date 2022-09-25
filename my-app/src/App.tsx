@@ -7,7 +7,7 @@ import DisplayPokemon from './components/DisplayPokemon';
 import { Trie } from "prefix-trie-ts";
 import 'animate.css';
 import TrackVisibility from 'react-on-screen';
-import backGround from "./PokeBg.jpg"
+import backGround from "./pokemonBG.jpg"
 import logopic from "./spic.png"
 
 
@@ -131,7 +131,7 @@ enum AppStatus {
       <div className="first:border-0 border-t hover:underline hover:text-blue-500 cursor-pointer hover:bg-blue-50"> 
       
       <a 
-        className="text-slate-700 "
+        className="text-slate-500 "
         onClick={(e) => {
           e.preventDefault();
           searchForPokemon(pokemonName);
@@ -150,10 +150,10 @@ enum AppStatus {
 
 
   const searchBox= (
-      <div className="mx-auto">
+      <div className="mx-auto font-Poppins">
         <form> 
       <input type="text" 
-      className="border-2 border-slate-500 p-2 rounded-lg w-64 mr-4"
+      className="border-2 border-slate-200 p-2 rounded-lg w-64 mr-4"
       placeholder="Search for a Pokemon" 
       value={searchText}
       onChange={(e) => {setSearchText(e.currentTarget.value);
@@ -162,7 +162,7 @@ enum AppStatus {
       
       <button onClick={onClickSearch} className= "bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500  p-2 w-24 rounded-lg font-bold ">Search</button>
       </form>
-      <div className="border rounded-sm w-64 mt-1">{suggestedPokemonLinks} </div>
+      <div className="border rounded-sm w-64 mt-1 bg-slate-50 font-thin text-white">{suggestedPokemonLinks} </div>
     </div>
     );
 
@@ -171,9 +171,9 @@ enum AppStatus {
    
     const suggestedPokemonElement= 
       suggestedPokemon.length > 0 ? (
-        <div>
-          <h6 className='text-lg font-bold'>Did you mean: </h6>
-          {suggestedPokemonLinks}
+        <div className="bg-slate-800 rounded-2xl py-2 px-2 text-white">
+          <h6 className='text-lg font-bold bg text-white'>Did you mean : </h6>
+         <div className="text-white">  {suggestedPokemonLinks}</div>
         </div>
       ) : null;
 
@@ -186,12 +186,12 @@ enum AppStatus {
     } else if (status ===AppStatus.NOT_FOUND){
       displayElement= (
       <div>
-        <h3 className="text-xl underline-offset-2 text-red-800 font-bold">Pokemon not found</h3>
+        <h3 className="text-xl underline-offset-2 text-red-600 font-bold  bg-white animate__animated animate__bounceInUp rounded-lg font-padding py-1 px-1 mx-20 my-1 w-60 ">Pokemon not found !! :(</h3>
         {suggestedPokemonElement}
         </div>
       );
     } else if (status === AppStatus.LOADING){
-      displayElement= <h1>Loading...</h1>;
+      displayElement= <h1 className="text-2xl text-white font-bold mx-20 ">Loading ...</h1>;
     } else {
       displayElement= <h6></h6>;
     }
@@ -206,31 +206,38 @@ enum AppStatus {
     };
 
     const pic= { image : `url(${logopic})`};
-    return (
+    return ( 
+      
+        
+      <div className=" flex h-screen " style= {backgroundStyle}>
 
 
-      <div className="flex h-screen" style= {backgroundStyle}>  
 
 
-      <body>
+      <body classbg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500>
        
         <div className="h-20 w-16  py-3 "><img src={logopic}/>  </div>
       
       </body>
       
-      <div className="    m-auto max-w-lg w-full mt-6 sm:mt-20">
+      <div className="m-auto max-w-lg w-full mt-6 sm:mt-20">
         
-        <h1 className="text-2xl text-white font-bold text-center animate__animated animate__bounce animate__delay-2s animate__slower "> POKEDEX </h1> 
-     <p className="text-slate-400 mb-8 text-center"> Search for a Pokemon below!</p>
+        <h1 className="m-auto text-6xl text-white font-bold text-center animate__animated animate__bounce animate__delay-2s animate__slower  "> POKEDEX </h1> 
+     <p className="text-slate-400 mb-8 text-center animate__animated animate__fadeInUp  "> Search for a Pokemon below!</p>
      
       <div className="flex"> {searchBox} </div>
-      <div className=" object-[center_bottom]"> {displayElement} </div> 
+
+
+      <div>  {displayElement}   </div>
+
 
       
  
         
       </div>
+
       </div>
+     
       
 
     );
