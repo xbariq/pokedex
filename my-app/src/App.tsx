@@ -131,10 +131,10 @@ enum AppStatus {
       <div className="first:border-0 border-t hover:underline hover:text-blue-500 cursor-pointer hover:bg-blue-50"> 
       
       <a 
-        className="text-slate-500 "
+        className="text-slate-600 "
         onClick={(e) => {
           e.preventDefault();
-          searchForPokemon(pokemonName);
+          searchForPokemon(pokemonName); 
           setSearchText(pokemonName);
         }}
       >
@@ -216,7 +216,7 @@ enum AppStatus {
 
       <body classbg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500>
        
-        <div className="h-20 w-16  py-3 "><img src={logopic}/>  </div>
+        <div className="h-20 w-16  py-3 drop-shadow-lg  "><img src={logopic}/>  </div>
       
       </body>
       
