@@ -5,6 +5,10 @@ import './index.css';
 import PokemonData from './models/pokemonData';
 import DisplayPokemon from './components/DisplayPokemon';
 import { Trie } from "prefix-trie-ts";
+import 'animate.css';
+import TrackVisibility from 'react-on-screen';
+import backGround from "./PokeBg.jpg"
+import logopic from "./spic.png"
 
 
         
@@ -156,7 +160,7 @@ enum AppStatus {
             }}
       />
       
-      <button onClick={onClickSearch} className="bg-blue-500 text-white p-2 w-24 rounded-lg hover:underline hover:bg-blue-600 ">Search</button>
+      <button onClick={onClickSearch} className= "bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500  p-2 w-24 rounded-lg font-bold ">Search</button>
       </form>
       <div className="border rounded-sm w-64 mt-1">{suggestedPokemonLinks} </div>
     </div>
@@ -165,13 +169,13 @@ enum AppStatus {
     let displayElement = null;
 
    
-    // const suggestedPokemonElement= 
-    //   suggestedPokemon.length > 0 ? (
-    //     <div>
-    //       <h6 className='text-lg font-bold'>Did you mean: </h6>
-    //       {suggestedPokemonLinks}
-    //     </div>
-    //   ) : null;
+    const suggestedPokemonElement= 
+      suggestedPokemon.length > 0 ? (
+        <div>
+          <h6 className='text-lg font-bold'>Did you mean: </h6>
+          {suggestedPokemonLinks}
+        </div>
+      ) : null;
 
 
     
@@ -182,31 +186,52 @@ enum AppStatus {
     } else if (status ===AppStatus.NOT_FOUND){
       displayElement= (
       <div>
-        <h3 className="text-xl underline-offset-2 text-yellow-500 font-bold">Pokemon not found</h3>
-        {/* {suggestedPokemonElement} */}
+        <h3 className="text-xl underline-offset-2 text-red-800 font-bold">Pokemon not found</h3>
+        {suggestedPokemonElement}
         </div>
       );
     } else if (status === AppStatus.LOADING){
       displayElement= <h1>Loading...</h1>;
     } else {
-      displayElement= <h6>Search for a Pokemon</h6>;
+      displayElement= <h6></h6>;
     }
 
+    const backgroundStyle= {
+      backgroundImage: `url(${backGround})`,
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+      backgroundRepeat: "no-repeat",
+      height: "100vh",
+      width: "100vw",
+    };
 
+    const pic= { image : `url(${logopic})`};
     return (
-      <div className="flex h-screen">  
+
+
+      <div className="flex h-screen" style= {backgroundStyle}>  
+
+
+      <body>
+       
+        <div className="h-20 w-16  py-3 "><img src={logopic}/>  </div>
       
-      <div className="border border-red-300 m-auto max-w-lg w-full mt-4 sm:mt-12">
+      </body>
+      
+      <div className="    m-auto max-w-lg w-full mt-6 sm:mt-20">
         
-        <h1 className="text-2xl text-slate-800 font-bold text-center"> POKEDEX </h1> 
+        <h1 className="text-2xl text-white font-bold text-center animate__animated animate__bounce animate__delay-2s animate__slower "> POKEDEX </h1> 
      <p className="text-slate-400 mb-8 text-center"> Search for a Pokemon below!</p>
      
       <div className="flex"> {searchBox} </div>
+      <div className=" object-[center_bottom]"> {displayElement} </div> 
+
       
-     <div className=" object-[center_bottom]"> {displayElement} </div> 
+ 
         
       </div>
       </div>
+      
 
     );
   }
