@@ -7,7 +7,7 @@ import DisplayPokemon from './components/DisplayPokemon';
 import { Trie } from "prefix-trie-ts";
 import 'animate.css';
 import TrackVisibility from 'react-on-screen';
-import backGround from "./pokemonBG.jpg"
+import backGround from "./PikachuBG.jpg"
 import logopic from "./spic.png"
 
 
@@ -160,7 +160,7 @@ enum AppStatus {
             }}
       />
       
-      <button onClick={onClickSearch} className= "bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500  p-2 w-24 rounded-lg font-bold ">Search</button>
+      <button onClick={onClickSearch} className= "bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500  p-2 w-24 rounded-lg font-bold text-white ">Search</button>
       </form>
       <div className="border rounded-sm w-64 mt-1 bg-slate-50 font-thin text-white">{suggestedPokemonLinks} </div>
     </div>
@@ -216,14 +216,14 @@ enum AppStatus {
 
       <body classbg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500>
        
-        <div className="h-20 w-16  py-3 drop-shadow-lg  "><img src={logopic}/>  </div>
+        <div className="h-20 w-16  py-3 drop-shadow-lg animate__animated animate__swing animate__slow	2s  	"><img src={logopic}/>  </div>
       
       </body>
       
       <div className="m-auto max-w-lg w-full mt-6 sm:mt-20">
         
-        <h1 className="m-auto text-6xl text-white font-bold text-center animate__animated animate__bounce animate__delay-2s animate__slower  "> POKEDEX </h1> 
-     <p className="text-slate-400 mb-8 text-center animate__animated animate__fadeInUp  "> Search for a Pokemon below!</p>
+        <h1 className="m-auto text-6xl text-white font-bold text-center animate__animated animate__bounce animate__delay-2s animate__slower first-letter:text-yellow-600  first-letter:font-serif "> POKEDEX </h1> 
+     <p className="text-white mb-8 text-center animate__animated animate__fadeInUp drop-shadow-2xl font-bold m-5 font-serif animate__slow	2s  "> Search for a Pokemon below!</p>
      
       <div className="flex"> {searchBox} </div>
 
